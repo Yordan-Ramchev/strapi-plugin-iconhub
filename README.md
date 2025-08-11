@@ -1,6 +1,6 @@
 # Strapi IconHub
 
-![iconhb-og](<assets/docs/OG Image Template 8b.jpg>)
+![iconhb-og](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/OG%20Image%20Template%208b.jpg)
 
 **The most lightweight and customizable icon picker for Strapi CMS** 🚀
 
@@ -56,15 +56,15 @@ Navigate to **Settings > Plugins** to confirm IconHub is installed.
 1. Open **Content-Type Builder** and navigate to or create a new collection.
 
 2. Add custom field → Select **IconHub**
-   ![Custom Field Tab](assets/docs/custom-field-tab.png)
+   ![Custom Field Tab](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/custom-field-tab.png)
 
-![alt text](assets/docs/iconhub-custom-field-selection.png)
+  ![Custom Field Selection](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/iconhub-custom-field-selection.png)
 
 3. Configure storage preferences
 
 ## ⚙️ Configuration
 
-![alt text](assets/docs/configure-storage-preferences.png)
+![Configure Storage Preferences](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/configure-storage-preferences.png)
 
 IconHub offers flexible storage options to optimize for your use case:
 
@@ -82,10 +82,10 @@ IconHub offers flexible storage options to optimize for your use case:
 
 The icon picker appears in your content entries with search functionality:
 
-![alt text](assets/docs/icon-custom-field-input.png)
-![alt text](assets/docs/icon-picker-search-1.png)
-![alt text](assets/docs/icon-picker-search-2.png)
-![alt text](assets/docs/icon-picker-search-3.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-custom-field-input.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-picker-search-1.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-picker-search-2.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-picker-search-3.png)
 
 ### Icon Editing & Customization
 
@@ -93,10 +93,10 @@ The icon picker appears in your content entries with search functionality:
 - **Live Preview**: See changes in real-time
 - **Advanced Editing**: Modify icon names and SVG data (with safety controls)
 
-![alt text](assets/docs/icon-custom-field-input-edit-button.png)
-![alt text](assets/docs/icon-picker-edit-modal.png)
-![alt text](assets/docs/icon-picker-edit-modal-color-picker.png)
-![alt text](assets/docs/icon-custom-field-input-with-selected-icon-and-color.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-custom-field-input-edit-button.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-picker-edit-modal.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-picker-edit-modal-color-picker.png)
+![alt text](https://github.com/Arshiash80/strapi-plugin-iconhub/raw/main/assets/docs/icon-custom-field-input-with-selected-icon-and-color.png)
 
 ### Data Structure
 
