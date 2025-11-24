@@ -68,6 +68,16 @@ const IconInput = forwardRef<HTMLButtonElement, IconInputProps>(
     // For backward compatibility
     const storeIconData = options?.storeIconData ?? true;
     const storeIconName = options?.storeIconName ?? true;
+    // Optional: limit Iconify search to specific sets (prefixes)
+    const allowedIconSetsRaw: string | undefined = options?.allowedIconSets;
+    const allowedPrefixes = useMemo(() => {
+      if (!allowedIconSetsRaw || typeof allowedIconSetsRaw !== 'string') return undefined;
+      const parts = allowedIconSetsRaw
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+      return parts.length ? parts : undefined;
+    }, [allowedIconSetsRaw]);
 
     // Helper function to validate hex color format
     const isValidHexColor = (color: string): boolean => {
@@ -319,7 +329,12 @@ const IconInput = forwardRef<HTMLButtonElement, IconInputProps>(
 
     const handleLoadMore = async () => {
       if (!searchQuery) return;
-      const { data, success, error } = await searchIcon(searchQuery, startIndex, startIndex + 50);
+      const { data, success, error } = await searchIcon(
+        searchQuery,
+        startIndex,
+        startIndex + 50,
+        allowedPrefixes
+      );
       if (!success || !data) {
         // TODO: Handle error
         return;
@@ -329,29 +344,32 @@ const IconInput = forwardRef<HTMLButtonElement, IconInputProps>(
       setThereIsMoreIcons(data.total === data.limit);
     };
 
-    const handleSearch = useCallback(async (query?: string) => {
-      const searchTerm = query || '';
-      setSearchQuery(searchTerm);
-      if (!searchTerm.trim()) {
-        setSearchedIcons(null);
-        setStartIndex(0);
-        setThereIsMoreIcons(false);
-        return;
-      }
+    const handleSearch = useCallback(
+      async (query?: string) => {
+        const searchTerm = query || '';
+        setSearchQuery(searchTerm);
+        if (!searchTerm.trim()) {
+          setSearchedIcons(null);
+          setStartIndex(0);
+          setThereIsMoreIcons(false);
+          return;
+        }
 
-      setIsLoading(true);
-      const { data, success, error } = await searchIcon(searchTerm);
-      setIsLoading(false);
+        setIsLoading(true);
+        const { data, success, error } = await searchIcon(searchTerm, 0, 50, allowedPrefixes);
+        setIsLoading(false);
 
-      if (!success || !data) {
-        // TODO: Handle error
-        return;
-      }
+        if (!success || !data) {
+          // TODO: Handle error
+          return;
+        }
 
-      setSearchedIcons(data.icons);
-      setStartIndex(data.start + data.total);
-      setThereIsMoreIcons(data.total === data.limit);
-    }, []);
+        setSearchedIcons(data.icons);
+        setStartIndex(data.start + data.total);
+        setThereIsMoreIcons(data.total === data.limit);
+      },
+      [allowedPrefixes]
+    );
 
     const debouncedSearch = useMemo(
       () =>

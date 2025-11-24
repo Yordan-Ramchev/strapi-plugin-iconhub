@@ -21,9 +21,9 @@ export default {
     // });
 
     app.customFields.register({
-      name: "iconhub",
+      name: 'iconhub',
       pluginId: PLUGIN_ID,
-      type: "json",
+      type: 'json',
       icon: IconPickerIcon,
       intlLabel: {
         id: getTranslation(`input.label`),
@@ -31,7 +31,8 @@ export default {
       },
       intlDescription: {
         id: getTranslation('input.description'),
-        defaultMessage: 'Icon picker with Iconify support. Saves icon name and icon data as raw SVG to the field as JSON.',
+        defaultMessage:
+          'Icon picker with Iconify support. Saves icon name and icon data as raw SVG to the field as JSON.',
       },
       components: {
         Input: async () =>
@@ -46,12 +47,12 @@ export default {
         advanced: [
           {
             sectionTitle: {
-              id: "global.settings",
+              id: 'global.settings',
             },
             items: [
               {
-                name: "required",
-                type: "checkbox",
+                name: 'required',
+                type: 'checkbox',
                 intlLabel: {
                   id: 'options.advanced.requiredField',
                   defaultMessage: 'Required field',
@@ -60,19 +61,19 @@ export default {
                   id: 'options.advanced.requiredField.description',
                   defaultMessage: "You won't be able to create an entry if this field is empty",
                 },
-              }
-            ]
+              },
+            ],
           },
           {
             sectionTitle: {
-              id: "iconhub.settings",
-              defaultMessage: "Icon Storage Options",
+              id: 'iconhub.settings',
+              defaultMessage: 'Icon Storage Options',
             },
             items: [
               {
                 size: 6,
-                name: "options.storeIconData",
-                type: "checkbox",
+                name: 'options.storeIconData',
+                type: 'checkbox',
                 required: true,
                 intlLabel: {
                   id: 'iconhub.settings.storeIconData.label',
@@ -80,15 +81,16 @@ export default {
                 },
                 description: {
                   id: 'iconhub.settings.storeIconData.description',
-                  defaultMessage: "Store the raw SVG data in the database. Recommended if you don't use Iconify and just want to render the raw SVG.",
+                  defaultMessage:
+                    "Store the raw SVG data in the database. Recommended if you don't use Iconify and just want to render the raw SVG.",
                 },
                 value: true,
                 defaultValue: true,
               },
               {
                 size: 6,
-                name: "options.storeIconName",
-                type: "checkbox",
+                name: 'options.storeIconName',
+                type: 'checkbox',
                 required: true,
                 intlLabel: {
                   id: 'iconhub.settings.storeIconName.label',
@@ -96,35 +98,57 @@ export default {
                 },
                 description: {
                   id: 'iconhub.settings.storeIconName.description',
-                  defaultMessage: "Store the icon name in the database. Recommended if you need the icon name to fetch from Iconify.",
+                  defaultMessage:
+                    'Store the icon name in the database. Recommended if you need the icon name to fetch from Iconify.',
                 },
                 value: true,
                 defaultValue: true,
               },
-            ]
-          }
+              {
+                size: 12,
+                name: 'options.allowedIconSets',
+                type: 'text',
+                intlLabel: {
+                  id: 'iconhub.settings.allowedIconSets.label',
+                  defaultMessage: 'Limit to Iconify sets (prefixes)',
+                },
+                description: {
+                  id: 'iconhub.settings.allowedIconSets.description',
+                  defaultMessage:
+                    'Comma separated list of icon set prefixes. You can use partial prefixes that end with -, such as mdi- matches mdi-light.',
+                },
+                placeholder: {
+                  id: 'iconhub.settings.allowedIconSets.placeholder',
+                  defaultMessage: 'Leave empty for all iconsets',
+                },
+              },
+            ],
+          },
         ],
         validator: (args: any) => ({
-          storeIconData: yup.boolean().test(
-            'at-least-one-selected',
-            'At least one storage option must be selected',
-            function (value) {
-              const { storeIconName } = this.parent;
-              return value || storeIconName;
-            }
-          ),
-          storeIconName: yup.boolean().test(
-            'at-least-one-selected',
-            'At least one storage option must be selected',
-            function (value) {
-              const { storeIconData } = this.parent;
-              return value || storeIconData;
-            }
-          ),
+          storeIconData: yup
+            .boolean()
+            .test(
+              'at-least-one-selected',
+              'At least one storage option must be selected',
+              function (value) {
+                const { storeIconName } = this.parent;
+                return value || storeIconName;
+              }
+            ),
+          storeIconName: yup
+            .boolean()
+            .test(
+              'at-least-one-selected',
+              'At least one storage option must be selected',
+              function (value) {
+                const { storeIconData } = this.parent;
+                return value || storeIconData;
+              }
+            ),
         }),
-      }
-
-    })
+      },
+    });
 
     app.registerPlugin({
       id: PLUGIN_ID,

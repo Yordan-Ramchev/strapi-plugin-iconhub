@@ -31,15 +31,19 @@ type SearchIconResponse = IconifyAPIResponse<{
 export const searchIcon = async (
   query: string,
   start: number = 0,
-  limit: number = 50
+  limit: number = 50,
+  prefixes?: string | string[]
 ): Promise<SearchIconResponse> => {
   const endpoint = `${API_URL}/search`;
-  const params = {
+  const params: Record<string, any> = {
     query,
     pretty: 1,
     limit,
     start,
   };
+  if (prefixes && (Array.isArray(prefixes) ? prefixes.length > 0 : String(prefixes).trim().length > 0)) {
+    params.prefixes = Array.isArray(prefixes) ? prefixes.join(',') : prefixes;
+  }
   try {
     const response = await axios.get(endpoint, { params });
     return {
